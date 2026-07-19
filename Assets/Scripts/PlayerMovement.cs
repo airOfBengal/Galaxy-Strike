@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float pitch = controlPitchFactor * movementInput.y;
         float roll = controlRollFactor * movementInput.x;
-        Quaternion targetRotation = Quaternion.Euler(pitch, 0f, -roll);
+        Quaternion targetRotation = Quaternion.Euler(-pitch, 0f, -roll);
         transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
