@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float controlSpeed = 50f;
     Vector2 movementInput;
 
+    [Header("Rotation Control Parameters")]
+    [SerializeField] float controlRotation = 20f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,9 +23,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         ProcessTranslation();
+        ProcessRotation();
     }
 
-    private void ProcessTranslation()
+    void ProcessRotation()
+    {
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, -controlRotation * movementInput.x);
+        transform.localRotation = targetRotation;
+    }
+
+    void ProcessTranslation()
     {
         float xOffset = movementInput.x * controlSpeed * Time.deltaTime;
         float x = transform.localPosition.x + xOffset;
