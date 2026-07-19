@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Rotation Control Parameters")]
     [SerializeField] float controlRotation = 20f;
+    [SerializeField] float rotationSpeed = 10f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void ProcessRotation()
     {
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, -controlRotation * movementInput.x);
-        transform.localRotation = targetRotation;
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     void ProcessTranslation()
