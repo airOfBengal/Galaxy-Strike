@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Control Parameters")]
-    [SerializeField] Vector2 xMoveRange = new Vector2(10, 10);
-    [SerializeField] Vector2 yMoveRange = new Vector2(5, 5);
+    [SerializeField] Vector2 xMoveRange = new Vector2(-10, 10);
+    [SerializeField] Vector2 yMoveRange = new Vector2(-5, 5);
     [SerializeField] float controlSpeed = 50f;
     Vector2 movementInput;
 
@@ -23,10 +23,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void ProcessTranslation()
     {
-        float xOffset = movementInput.x * controlSpeed * Time.deltaTime; // Mathf.Clamp(movementInput.x * controlSpeed * Time.deltaTime, xMoveRange.x, xMoveRange.y);
-        float yOffset = movementInput.y * controlSpeed * Time.deltaTime; // Mathf.Clamp(movementInput.y * controlSpeed * Time.deltaTime, yMoveRange.x, yMoveRange.y);
+        float xOffset = movementInput.x * controlSpeed * Time.deltaTime;
+        float x = transform.localPosition.x + xOffset;
+        float clampedX = Mathf.Clamp(x, xMoveRange.x, xMoveRange.y);
 
-        transform.localPosition = new Vector3(transform.localPosition.x + xOffset, transform.localPosition.y + yOffset, 0f);
+
+        float yOffset = movementInput.y * controlSpeed * Time.deltaTime;
+        float y = transform.localPosition.y + yOffset;
+        float clampedY = Mathf.Clamp(y, yMoveRange.x, yMoveRange.y);
+
+        transform.localPosition = new Vector3(clampedX, clampedY, 0f);
     }
 
     public void OnMove(InputValue value)
