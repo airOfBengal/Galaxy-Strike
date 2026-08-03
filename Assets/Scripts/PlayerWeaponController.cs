@@ -4,12 +4,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerWeaponController : MonoBehaviour
 {
+    [SerializeField] RectTransform crosshair;
     [SerializeField] GameObject[] laserWeapons;
     bool isFiring;
     ParticleSystem[] laserParticles;
 
     private void Start()
     {
+        Cursor.visible = false;
+        
         laserParticles = new ParticleSystem[laserWeapons.Length];
         for(int i = 0; i < laserWeapons.Length; i++)
         {
@@ -20,6 +23,12 @@ public class PlayerWeaponController : MonoBehaviour
     private void Update()
     {
         ProcessFiring();    
+        MoveCrosshair();
+    }
+
+    private void MoveCrosshair()
+    {
+        crosshair.position = Mouse.current.position.ReadValue();
     }
 
     private void ProcessFiring()
