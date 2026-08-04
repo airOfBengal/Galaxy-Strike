@@ -1467,6 +1467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0fe1caed37def488eb0a1d280f97e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  destroyedVfx: {fileID: 2716376039902961885, guid: 6d14349657ad82b45973bd586472bc38, type: 3}
 --- !u!1 &1097317215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,6 +1743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0fe1caed37def488eb0a1d280f97e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  destroyedVfx: {fileID: 2716376039902961885, guid: 6d14349657ad82b45973bd586472bc38, type: 3}
 --- !u!54 &1222211743
 Rigidbody:
   m_ObjectHideFlags: 0
